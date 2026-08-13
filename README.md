@@ -1,4 +1,4 @@
 # apnacollege-demo
-this is my git repository
+This Is My Git Repository
 <br>
-Author - Md Sahbaz Hussain
+Author - MD SAHBAZ (HUSSAIN)
