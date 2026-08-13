@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Job Seekers - Online Job Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 1rem 2rem;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+        }
+        
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #0066cc;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background: #e6f0ff;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-title {
+            color: #0066cc;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            padding: 0.8rem 2rem;
+            background: white;
+            color: #0066cc;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .step {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #0066cc;
+        }
+        
+        .step-number {
+            font-size: 2rem;
+            color: #0066cc;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step h3 {
+            color: #0066cc;
+            margin-bottom: 0.8rem;
+        }
+        
+        .step p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .profile-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+        
+        .profile-form h3 {
+            color: #0066cc;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .submit-btn {
+            padding: 0.8rem 2rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: #0052a3;
+        }
+        
+        .benefits {
+            background: #e6f0ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #0066cc;
+        }
+        
+        .benefits h3 {
+            color: #0066cc;
+            margin-bottom: 1rem;
+        }
+        
+        .benefits ul {
+            list-style: none;
+        }
+        
+        .benefits li {
+            padding: 0.5rem 0;
+            color: #333;
+        }
+        
+        .benefits li:before {
+            content: "✓ ";
+            color: #0066cc;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        footer {
+            background: #f5f5f5;
+            color: #666;
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid #e0e0e0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💼 Online Job Portal</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="job.html">Jobs</a>
+        <a href="employer.html">For Employers</a>
+        <a href="seeker.html">For Job Seekers</a>
+    </nav>
+    
+    <div class="container">
+        <h2 class="page-title">Your Career Journey Starts Here</h2>
+        
+        <div class="hero">
+            <h2>Find Your Dream Job</h2>
+            <p>Join thousands of job seekers who have found their perfect job with Online Job Portal. Create your profile, explore opportunities, and launch your career.</p>
+            <button class="btn">Create Profile Now</button>
+        </div>
+        
+        <h3 style="color: #0066cc; margin-top: 2rem; margin-bottom: 1.5rem; font-size: 1.3rem;">How It Works</h3>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Create Profile</h3>
+                <p>Set up your professional profile with your resume, skills, and experience details.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Browse Jobs</h3>
+                <p>Explore thousands of job openings from top companies across various industries.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Apply Jobs</h3>
+                <p>Apply to jobs that match your skills and interests with just one click.</p>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Get Hired</h3>
+                <p>Connect with employers and get selected for your dream job opportunity.</p>
+            </div>
+        </div>
+        
+        <div class="benefits">
+            <h3>Why Join Online Job Portal?</h3>
+            <ul>
+                <li>Access to exclusive job opportunities from top companies</li>
+                <li>Networking with professionals and employers</li>
+                <li>Skill development resources and career guidance</li>
+                <li>Regular job alerts based on your profile</li>
+                <li>Free resume building and optimization tools</li>
+                <li>Interview preparation resources</li>
+                <li>Career mentoring from industry experts</li>
+                <li>100% verified job listings</li>
+            </ul>
+        </div>
+        
+        <div class="profile-form">
+            <h3>Quick Profile Setup</h3>
+            <form id="profileForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" placeholder="John" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" placeholder="Doe" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="john@example.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="9876543210" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="skills">Skills (comma separated)</label>
+                    <input type="text" id="skills" placeholder="JavaScript, React, Node.js, HTML, CSS" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Experience (Years)</label>
+                    <select id="experience" required>
+                        <option value="">Select experience</option>
+                        <option value="0">Fresher (0 years)</option>
+                        <option value="1">1 year</option>
+                        <option value="2">2 years</option>
+                        <option value="3">3 years</option>
+                        <option value="5">5+ years</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bio">About You</label>
+                    <textarea id="bio" placeholder="Tell us about your professional background and career goals..." required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Create Profile</button>
+            </form>
+            
+            <div id="profileSuccess" style="display: none; background: #e8f5e9; padding: 1rem; border-radius: 4px; margin-top: 1rem; border-left: 4px solid #4CAF50;">
+                <strong style="color: #4CAF50;">✓ Profile Created!</strong> 
+                <p>Your profile has been successfully created. You can now search and apply for jobs that match your skills!</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Online Job Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+<script>
+    // Handle profile form submission
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const profile = {
+            firstName: document.getElementById('first-name').value,
+            lastName: document.getElementById('last-name').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            skills: document.getElementById('skills').value,
+            experience: document.getElementById('experience').value,
+            bio: document.getElementById('bio').value
+        };
+        
+        // Save to localStorage
+        localStorage.setItem('userProfile', JSON.stringify(profile));
+        
+        // Show success message
+        document.getElementById('profileSuccess').style.display = 'block';
+        
+        // Alert user
+        alert(`✅ Profile Created Successfully!\n\nName: ${profile.firstName} ${profile.lastName}\nEmail: ${profile.email}\n\nYou can now start exploring and applying for jobs!`);
+        
+        // Reset form
+        document.getElementById('profileForm').reset();
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+            document.getElementById('profileSuccess').style.display = 'none';
+        }, 5000);
+    });
+</script>

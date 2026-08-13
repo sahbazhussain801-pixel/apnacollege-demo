@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Employers - Online Job Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 1rem 2rem;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+        }
+        
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #0066cc;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background: #e6f0ff;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-title {
+            color: #0066cc;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            padding: 0.8rem 2rem;
+            background: white;
+            color: #0066cc;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-top: 4px solid #0066cc;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            box-shadow: 0 4px 12px rgba(0,102,204,0.15);
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: #0066cc;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .form-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+        
+        .form-section h3 {
+            color: #0066cc;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0066cc;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .submit-btn {
+            padding: 0.8rem 2rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: #0052a3;
+        }
+        
+        footer {
+            background: #f5f5f5;
+            color: #666;
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid #e0e0e0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💼 Online Job Portal</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="job.html">Jobs</a>
+        <a href="employer.html">For Employers</a>
+        <a href="seeker.html">For Job Seekers</a>
+    </nav>
+    
+    <div class="container">
+        <h2 class="page-title">Hire Top Talent</h2>
+        
+        <div class="hero">
+            <h2>Post Your Job Openings</h2>
+            <p>Connect with thousands of qualified job seekers from Apna College. Post your job openings and find the perfect candidates for your team.</p>
+            <button class="btn">Post a Job Now</button>
+        </div>
+        
+        <h3 style="color: #0066cc; margin-top: 2rem; margin-bottom: 1.5rem; font-size: 1.5rem;">Why Choose Apna College?</h3>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>📊 Large Candidate Pool</h3>
+                <p>Access thousands of pre-vetted candidates ready to join your team. Find skilled professionals across various domains.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>⚡ Quick Hiring</h3>
+                <p>Post jobs instantly and start receiving applications from qualified candidates within hours, not weeks.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🎯 Targeted Recruitment</h3>
+                <p>Filter candidates by skills, experience, location, and other criteria to find the perfect match for your positions.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>💼 Affordable Plans</h3>
+                <p>Choose flexible pricing plans that suit your hiring needs. No hidden charges, transparent and straightforward pricing.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📱 Easy to Use</h3>
+                <p>User-friendly dashboard to manage job postings, applications, and candidate communications all in one place.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🤝 Support Team</h3>
+                <p>24/7 customer support to help you with any questions or issues during your hiring process.</p>
+            </div>
+        </div>
+        
+        <div class="form-section">
+            <h3>Quick Job Posting Form</h3>
+            <form id="jobPostForm">
+                <div class="form-group">
+                    <label for="company">Company Name</label>
+                    <input type="text" id="company" placeholder="Enter your company name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="job-title">Job Title</label>
+                    <input type="text" id="job-title" placeholder="e.g., Senior Developer, UI Designer" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Job Location</label>
+                    <input type="text" id="location" placeholder="e.g., Bangalore, Delhi, Remote" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="salary">Salary Range</label>
+                    <input type="text" id="salary" placeholder="e.g., ₹5-8 LPA" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Experience Required (Years)</label>
+                    <input type="text" id="experience" placeholder="e.g., 2-4 years" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="skills">Required Skills (comma separated)</label>
+                    <input type="text" id="skills" placeholder="e.g., React, JavaScript, Node.js" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Job Description</label>
+                    <textarea id="description" placeholder="Describe the job role and responsibilities..." required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Post Job Now</button>
+            </form>
+            
+            <div id="successMessage" style="display: none; background: #e8f5e9; padding: 1rem; border-radius: 4px; margin-top: 1rem; border-left: 4px solid #4CAF50;">
+                <strong style="color: #4CAF50;">✓ Success!</strong> Your job has been posted successfully. Candidates can now see and apply for your job!
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Online Job Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+<script>
+    // Handle job posting form submission
+    document.getElementById('jobPostForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form values
+        const newJob = {
+            title: document.getElementById('job-title').value,
+            company: document.getElementById('company').value,
+            location: document.getElementById('location').value,
+            salary: document.getElementById('salary').value,
+            experience: document.getElementById('experience').value,
+            skills: document.getElementById('skills').value,
+            description: document.getElementById('description').value
+        };
+        
+        // Get existing jobs from localStorage
+        let postedJobs = [];
+        const existingJobs = localStorage.getItem('postedJobs');
+        if (existingJobs) {
+            postedJobs = JSON.parse(existingJobs);
+        }
+        
+        // Add new job
+        postedJobs.push(newJob);
+        
+        // Save to localStorage
+        localStorage.setItem('postedJobs', JSON.stringify(postedJobs));
+        
+        // Show success message
+        document.getElementById('successMessage').style.display = 'block';
+        
+        // Reset form
+        document.getElementById('jobPostForm').reset();
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+            document.getElementById('successMessage').style.display = 'none';
+        }, 5000);
+        
+        // Alert user
+        alert(`✅ Job Posted Successfully!\n\nPosition: ${newJob.title}\nCompany: ${newJob.company}\n\nCandidates can now view and apply for this job on the Jobs page!`);
+    });
+</script>

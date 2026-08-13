@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs - Online Job Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #0052a3 100%);
+            color: white;
+            padding: 1rem 2rem;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+        }
+        
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #0066cc;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background: #e6f0ff;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-title {
+            color: #0066cc;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .search-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .search-box button {
+            padding: 0.8rem 2rem;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .search-box button:hover {
+            background: #0052a3;
+        }
+        
+        .job-card {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .job-card:hover {
+            box-shadow: 0 4px 12px rgba(0,102,204,0.15);
+            transform: translateX(5px);
+        }
+        
+        .job-title {
+            color: #0066cc;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .company-name {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .job-details {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .job-detail {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .job-description {
+            color: #555;
+            margin: 1rem 0;
+            line-height: 1.6;
+        }
+        
+        .apply-btn {
+            background: #0066cc;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .apply-btn:hover {
+            background: #0052a3;
+        }
+        
+        footer {
+            background: #f5f5f5;
+            color: #666;
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid #e0e0e0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💼 Online Job Portal</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="job.html">Jobs</a>
+        <a href="employer.html">For Employers</a>
+        <a href="seeker.html">For Job Seekers</a>
+    </nav>
+    
+    <div class="container">
+        <h2 class="page-title">Browse Jobs</h2>
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search jobs by title, skills, or company...">
+            <button onclick="searchJobs()">Search</button>
+        </div>
+        
+        <div id="jobsList">
+            <!-- Jobs will be dynamically loaded here -->
+        </div>
+        
+        <div id="noResults" style="text-align: center; padding: 2rem; display: none;">
+            <p style="color: #999; font-size: 1.2rem;">No jobs found matching your search. Try different keywords!</p>
+        </div>
+    </div>
+    
+    <script>
+        // Sample jobs data
+        const sampleJobs = [
+            {
+                title: "Frontend Developer",
+                company: "TechCorp Solutions",
+                location: "Bangalore, India",
+                salary: "₹5-8 LPA",
+                experience: "2-4 years",
+                description: "We are looking for a talented Frontend Developer to join our team.",
+                skills: "React, JavaScript, CSS, HTML"
+            },
+            {
+                title: "Backend Developer",
+                company: "InnovateLabs",
+                location: "Delhi, India",
+                salary: "₹6-9 LPA",
+                experience: "3-5 years",
+                description: "Seeking an experienced Backend Developer proficient in modern tech stack.",
+                skills: "Node.js, Python, SQL, MongoDB"
+            },
+            {
+                title: "UI/UX Designer",
+                company: "Creative Digital Agency",
+                location: "Mumbai, India",
+                salary: "₹4-6 LPA",
+                experience: "1-3 years",
+                description: "Join our design team to create beautiful and user-friendly interfaces.",
+                skills: "Figma, Adobe XD, UI Design, Prototyping"
+            },
+            {
+                title: "Data Scientist",
+                company: "AI Research Institute",
+                location: "Hyderabad, India",
+                salary: "₹7-10 LPA",
+                experience: "2-4 years",
+                description: "Work with machine learning and data analysis on cutting-edge projects.",
+                skills: "Python, SQL, TensorFlow, Machine Learning"
+            }
+        ];
+        
+        // Get jobs from localStorage or use sample jobs
+        function getAllJobs() {
+            const storedJobs = localStorage.getItem('postedJobs');
+            if (storedJobs) {
+                return [...sampleJobs, ...JSON.parse(storedJobs)];
+            }
+            return sampleJobs;
+        }
+        
+        // Display all jobs
+        function displayJobs(jobs) {
+            const jobsList = document.getElementById('jobsList');
+            const noResults = document.getElementById('noResults');
+            
+            if (jobs.length === 0) {
+                jobsList.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            jobsList.innerHTML = jobs.map((job, index) => `
+                <div class="job-card">
+                    <div class="job-title">${job.title}</div>
+                    <div class="company-name">${job.company}</div>
+                    <div class="job-details">
+                        <div class="job-detail">📍 Location: ${job.location}</div>
+                        <div class="job-detail">💰 Salary: ${job.salary}</div>
+                        <div class="job-detail">⏱️ Experience: ${job.experience}</div>
+                    </div>
+                    <div class="job-description">${job.description}</div>
+                    <div class="job-description" style="color: #0066cc; font-size: 0.9rem; margin: 0.5rem 0;">
+                        <strong>Skills Required:</strong> ${job.skills}
+                    </div>
+                    <button class="apply-btn" onclick="applyJob('${job.title}', '${job.company}')">Apply Now</button>
+                </div>
+            `).join('');
+        }
+        
+        // Search jobs function
+        function searchJobs() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const allJobs = getAllJobs();
+            
+            if (searchTerm === '') {
+                displayJobs(allJobs);
+                return;
+            }
+            
+            const filteredJobs = allJobs.filter(job => 
+                job.title.toLowerCase().includes(searchTerm) ||
+                job.company.toLowerCase().includes(searchTerm) ||
+                job.skills.toLowerCase().includes(searchTerm) ||
+                job.location.toLowerCase().includes(searchTerm)
+            );
+            
+            displayJobs(filteredJobs);
+        }
+        
+        // Apply job function
+        function applyJob(jobTitle, company) {
+            alert(`✅ Application submitted!\n\nYou have successfully applied for:\n\n${jobTitle}\nat ${company}\n\nThe employer will contact you soon!`);
+        }
+        
+        // Listen for Enter key in search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchJobs();
+            }
+        });
+        
+        // Load jobs on page load
+        window.onload = function() {
+            displayJobs(getAllJobs());
+        };
+    </script>
+    
+    <footer>
+        <p>&copy; 2026 Online Job Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>
