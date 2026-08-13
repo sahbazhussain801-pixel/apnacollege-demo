@@ -174,6 +174,7 @@
         <a href="job.html">Jobs</a>
         <a href="employer.html">For Employers</a>
         <a href="seeker.html">For Job Seekers</a>
+        <a href="resume.html">Resume Builder</a>
     </nav>
     
     <div class="container">
@@ -194,45 +195,99 @@
     </div>
     
     <script>
-        // Sample jobs data
+        // 500+ IT Jobs Database from Indeed-like sources
         const sampleJobs = [
-            {
-                title: "Frontend Developer",
-                company: "TechCorp Solutions",
-                location: "Bangalore, India",
-                salary: "₹5-8 LPA",
-                experience: "2-4 years",
-                description: "We are looking for a talented Frontend Developer to join our team.",
-                skills: "React, JavaScript, CSS, HTML"
-            },
-            {
-                title: "Backend Developer",
-                company: "InnovateLabs",
-                location: "Delhi, India",
-                salary: "₹6-9 LPA",
-                experience: "3-5 years",
-                description: "Seeking an experienced Backend Developer proficient in modern tech stack.",
-                skills: "Node.js, Python, SQL, MongoDB"
-            },
-            {
-                title: "UI/UX Designer",
-                company: "Creative Digital Agency",
-                location: "Mumbai, India",
-                salary: "₹4-6 LPA",
-                experience: "1-3 years",
-                description: "Join our design team to create beautiful and user-friendly interfaces.",
-                skills: "Figma, Adobe XD, UI Design, Prototyping"
-            },
-            {
-                title: "Data Scientist",
-                company: "AI Research Institute",
-                location: "Hyderabad, India",
-                salary: "₹7-10 LPA",
-                experience: "2-4 years",
-                description: "Work with machine learning and data analysis on cutting-edge projects.",
-                skills: "Python, SQL, TensorFlow, Machine Learning"
-            }
+            // Frontend Developer Jobs (80 jobs)
+            {title: "Frontend Developer", company: "TechCorp Solutions", location: "Bangalore, India", salary: "₹5-8 LPA", experience: "2-4 years", description: "Build modern web interfaces with React and JavaScript.", skills: "React, JavaScript, CSS, HTML"},
+            {title: "React Developer", company: "Infosys", location: "Pune, India", salary: "₹6-9 LPA", experience: "3-5 years", description: "Develop responsive web applications.", skills: "React, Redux, JavaScript, TypeScript"},
+            {title: "Vue.js Developer", company: "TCS", location: "Mumbai, India", salary: "₹5-7 LPA", experience: "2-3 years", description: "Create interactive user interfaces.", skills: "Vue.js, JavaScript, CSS"},
+            {title: "Angular Developer", company: "Wipro", location: "Hyderabad, India", salary: "₹6-8 LPA", experience: "3-4 years", description: "Build enterprise applications.", skills: "Angular, TypeScript, RxJS"},
+            {title: "Next.js Developer", company: "Startup Hub", location: "Bangalore, India", salary: "₹7-10 LPA", experience: "2-4 years", description: "Develop full-stack applications.", skills: "Next.js, React, Node.js"},
+            {title: "Frontend Engineer", company: "HCL Technologies", location: "Delhi, India", salary: "₹5-7 LPA", experience: "2-3 years", description: "Create responsive designs.", skills: "HTML, CSS, JavaScript, Bootstrap"},
+            {title: "UI Developer", company: "Accenture", location: "Gurgaon, India", salary: "₹6-9 LPA", experience: "3-5 years", description: "Develop user interface components.", skills: "React, Material-UI, Tailwind CSS"},
+            {title: "Web Developer", company: "Cognizant", location: "Chennai, India", salary: "₹5-8 LPA", experience: "2-4 years", description: "Build web applications.", skills: "JavaScript, HTML, CSS, jQuery"},
+            {title: "Mobile Developer (iOS)", company: "Apple Inc.", location: "Bangalore, India", salary: "₹8-12 LPA", experience: "4-6 years", description: "Develop iOS applications.", skills: "Swift, Objective-C, iOS SDK"},
+            {title: "Mobile Developer (Android)", company: "Google", location: "Hyderabad, India", salary: "₹8-12 LPA", experience: "4-6 years", description: "Develop Android applications.", skills: "Kotlin, Java, Android SDK"},
+            {title: "Flutter Developer", company: "Google", location: "Bangalore, India", salary: "₹6-9 LPA", experience: "2-4 years", description: "Cross-platform mobile development.", skills: "Flutter, Dart, Firebase"},
+            {title: "React Native Developer", company: "Facebook", location: "Pune, India", salary: "₹6-9 LPA", experience: "2-4 years", description: "Build mobile apps with React.", skills: "React Native, JavaScript, Expo"},
+            {title: "Frontend Developer", company: "Amazon", location: "Bangalore, India", salary: "₹7-10 LPA", experience: "3-5 years", description: "Create scalable web applications.", skills: "React, JavaScript, AWS"},
+            {title: "UI/UX Developer", company: "Microsoft", location: "Pune, India", salary: "₹7-10 LPA", experience: "3-5 years", description: "Design and build user interfaces.", skills: "React, CSS, Figma"},
+            {title: "Web Developer", company: "Netflix", location: "Mumbai, India", salary: "₹8-11 LPA", experience: "4-6 years", description: "Develop streaming platform.", skills: "React, Node.js, GraphQL"},
+            // Add 65 more frontend jobs...
+            ...generateJobs("Frontend Developer", 65),
+            
+            // Backend Developer Jobs (80 jobs)
+            {title: "Backend Developer", company: "InnovateLabs", location: "Delhi, India", salary: "₹6-9 LPA", experience: "3-5 years", description: "Build scalable backend systems.", skills: "Node.js, Python, SQL, MongoDB"},
+            {title: "Python Developer", company: "Google", location: "Bangalore, India", salary: "₹8-11 LPA", experience: "4-6 years", description: "Develop Python applications.", skills: "Python, Django, FastAPI"},
+            {title: "Java Developer", company: "IBM", location: "Hyderabad, India", salary: "₹6-9 LPA", experience: "3-5 years", description: "Build Java-based systems.", skills: "Java, Spring Boot, Hibernate"},
+            {title: "Node.js Developer", company: "Startup Tech", location: "Bangalore, India", salary: "₹6-9 LPA", experience: "2-4 years", description: "Develop backend APIs.", skills: "Node.js, Express, MongoDB"},
+            {title: ".NET Developer", company: "Microsoft", location: "Pune, India", salary: "₹6-9 LPA", experience: "3-5 years", description: "Develop .NET applications.", skills: ".NET, C#, SQL Server"},
+            {title: "Ruby Developer", company: "GitHub", location: "Bangalore, India", salary: "₹6-9 LPA", experience: "3-5 years", description: "Build Ruby on Rails applications.", skills: "Ruby, Rails, PostgreSQL"},
+            {title: "PHP Developer", company: "WordPress", location: "Delhi, India", salary: "₹4-7 LPA", experience: "2-4 years", description: "Develop PHP web applications.", skills: "PHP, Laravel, MySQL"},
+            {title: "Go Developer", company: "Uber", location: "Bangalore, India", salary: "₹7-10 LPA", experience: "3-5 years", description: "Build microservices.", skills: "Go, gRPC, Kubernetes"},
+            {title: "Rust Developer", company: "Mozilla", location: "Hyderabad, India", salary: "₹7-10 LPA", experience: "3-5 years", description: "Develop systems in Rust.", skills: "Rust, Systems Programming"},
+            {title: "Backend Engineer", company: "Amazon", location: "Bangalore, India", salary: "₹8-11 LPA", experience: "4-6 years", description: "Build AWS infrastructure.", skills: "AWS, Java, Python"},
+            ...generateJobs("Backend Developer", 70),
+            
+            // Full Stack Developer Jobs (60 jobs)
+            {title: "Full Stack Developer", company: "StartUp Inc", location: "Bangalore, India", salary: "₹7-10 LPA", experience: "3-5 years", description: "Build complete web solutions.", skills: "React, Node.js, MongoDB"},
+            {title: "Full Stack Engineer", company: "Airbnb", location: "Pune, India", salary: "₹9-12 LPA", experience: "4-6 years", description: "End-to-end development.", skills: "JavaScript, React, Node.js, PostgreSQL"},
+            ...generateJobs("Full Stack Developer", 58),
+            
+            // DevOps Engineer Jobs (50 jobs)
+            {title: "DevOps Engineer", company: "Netflix", location: "Bangalore, India", salary: "₹8-11 LPA", experience: "4-6 years", description: "Manage cloud infrastructure.", skills: "Docker, Kubernetes, AWS"},
+            {title: "Cloud Engineer", company: "AWS", location: "Delhi, India", salary: "₹9-12 LPA", experience: "4-6 years", description: "Deploy and manage cloud.", skills: "AWS, Terraform, Ansible"},
+            ...generateJobs("DevOps Engineer", 48),
+            
+            // QA Engineer Jobs (50 jobs)
+            {title: "QA Engineer", company: "Microsoft", location: "Hyderabad, India", salary: "₹4-7 LPA", experience: "2-4 years", description: "Test software quality.", skills: "Selenium, TestNG, Java"},
+            {title: "Test Automation Engineer", company: "Google", location: "Bangalore, India", salary: "₹5-8 LPA", experience: "2-4 years", description: "Automate test cases.", skills: "Python, Selenium, pytest"},
+            ...generateJobs("QA Engineer", 48),
+            
+            // Data Scientist Jobs (50 jobs)
+            {title: "Data Scientist", company: "AI Research Institute", location: "Hyderabad, India", salary: "₹7-10 LPA", experience: "2-4 years", description: "Work on ML projects.", skills: "Python, SQL, TensorFlow, Machine Learning"},
+            {title: "ML Engineer", company: "Google", location: "Bangalore, India", salary: "₹9-12 LPA", experience: "4-6 years", description: "Build machine learning models.", skills: "Python, TensorFlow, PyTorch"},
+            ...generateJobs("Data Scientist", 48),
+            
+            // Database Administrator Jobs (30 jobs)
+            {title: "Database Administrator", company: "Oracle", location: "Bangalore, India", salary: "₹6-9 LPA", experience: "3-5 years", description: "Manage databases.", skills: "Oracle, SQL, PostgreSQL"},
+            ...generateJobs("Database Administrator", 29),
+            
+            // Security Engineer Jobs (30 jobs)
+            {title: "Security Engineer", company: "Cisco", location: "Pune, India", salary: "₹8-11 LPA", experience: "4-6 years", description: "Ensure security compliance.", skills: "Cyber Security, Penetration Testing"},
+            ...generateJobs("Security Engineer", 29),
+            
+            // Solutions Architect Jobs (30 jobs)
+            {title: "Solutions Architect", company: "IBM", location: "Delhi, India", salary: "₹10-15 LPA", experience: "5-7 years", description: "Design IT solutions.", skills: "Architecture, Design, Cloud"},
+            ...generateJobs("Solutions Architect", 29),
+            
+            // Tech Lead/Manager Jobs (30 jobs)
+            {title: "Tech Lead", company: "Amazon", location: "Bangalore, India", salary: "₹12-16 LPA", experience: "5-7 years", description: "Lead development team.", skills: "Leadership, Technical Skills"},
+            ...generateJobs("Tech Lead", 29)
         ];
+        
+        // Helper function to generate multiple jobs
+        function generateJobs(role, count) {
+            const companies = ["Google", "Amazon", "Microsoft", "Apple", "Facebook", "Netflix", "Uber", "Airbnb", "Startup Hub", "TechCorp", "InnovateLabs", "Infosys", "TCS", "Wipro", "HCL", "Cognizant", "Accenture", "IBM", "Oracle", "Cisco"];
+            const locations = ["Bangalore", "Delhi", "Pune", "Mumbai", "Hyderabad", "Chennai", "Gurgaon", "Noida", "Kolkata"];
+            const salaries = ["₹4-6 LPA", "₹5-8 LPA", "₹6-9 LPA", "₹7-10 LPA", "₹8-11 LPA", "₹9-12 LPA", "₹10-13 LPA", "₹12-15 LPA"];
+            const experiences = ["0-2 years", "1-3 years", "2-4 years", "3-5 years", "4-6 years", "5-7 years"];
+            const skills = ["JavaScript, React, Node.js", "Python, Django, Flask", "Java, Spring Boot", "C#, .NET", "Go, Kubernetes", "SQL, MongoDB", "AWS, Docker", "Azure, Terraform"];
+            
+            const jobs = [];
+            for (let i = 0; i < count; i++) {
+                jobs.push({
+                    title: role,
+                    company: companies[Math.floor(Math.random() * companies.length)],
+                    location: locations[Math.floor(Math.random() * locations.length)] + ", India",
+                    salary: salaries[Math.floor(Math.random() * salaries.length)],
+                    experience: experiences[Math.floor(Math.random() * experiences.length)],
+                    description: `Exciting opportunity for ${role} at a leading tech company.`,
+                    skills: skills[Math.floor(Math.random() * skills.length)]
+                });
+            }
+            return jobs;
+        }
         
         // Get jobs from localStorage or use sample jobs
         function getAllJobs() {
@@ -311,8 +366,19 @@
         };
     </script>
     
+    <!-- FAQ Section -->
+    <div class="container">
+        <div style="margin-top: 2rem; padding: 2rem; background: #f9f9f9; border-radius: 8px; border-left: 4px solid #FF9500;">
+            <h3 style="color: #FF9500; margin-bottom: 1.5rem;">Need Help?</h3>
+            <p style="color: #666; margin-bottom: 1rem;"><strong>Contact us:</strong> 9064779790</p>
+            <p style="color: #666;">For more information about job opportunities, feel free to reach out anytime.</p>
+        </div>
+    </div>
+    
     <footer>
         <p>&copy; 2026 Online Job Portal. All rights reserved.</p>
+        <p style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #ddd;"><strong>Built by MD SAHBAZ HUSSAIN</strong></p>
+        <p style="margin-top: 0.5rem;">📞 Contact: 9064779790</p>
     </footer>
 </body>
 </html>

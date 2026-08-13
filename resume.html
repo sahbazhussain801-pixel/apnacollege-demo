@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - Online Job Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #FF9500 0%, #E67E22 100%);
+            color: white;
+            padding: 1rem 2rem;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+        }
+        
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #FF9500;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background: #ffe6cc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .resume-builder {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .form-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .form-section h2 {
+            color: #FF9500;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            border-bottom: 2px solid #FF9500;
+            padding-bottom: 0.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FF9500;
+            box-shadow: 0 0 0 3px rgba(255, 149, 0, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .add-more-btn {
+            background: #FF9500;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .add-more-btn:hover {
+            background: #E67E22;
+        }
+        
+        .remove-btn {
+            background: #e74c3c;
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .remove-btn:hover {
+            background: #c0392b;
+        }
+        
+        .section-item {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            border-left: 3px solid #FF9500;
+        }
+        
+        /* Resume Preview */
+        .resume-preview {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 2rem;
+            max-height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .resume-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #FF9500;
+            padding-bottom: 1rem;
+        }
+        
+        .resume-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #FF9500;
+        }
+        
+        .resume-contact {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .resume-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .resume-section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #FF9500;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .resume-item {
+            margin-bottom: 1rem;
+        }
+        
+        .resume-item-title {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .resume-item-subtitle {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .resume-item-desc {
+            color: #555;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+        
+        .download-btn {
+            width: 100%;
+            background: #FF9500;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        
+        .download-btn:hover {
+            background: #E67E22;
+        }
+        
+        .print-btn {
+            width: 100%;
+            background: #3498db;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+        
+        .print-btn:hover {
+            background: #2980b9;
+        }
+        
+        footer {
+            background: #f5f5f5;
+            color: #666;
+            text-align: center;
+            padding: 2rem;
+            border-top: 2px solid #e0e0e0;
+            margin-top: 3rem;
+        }
+        
+        @media print {
+            nav, .form-section, .download-btn, .print-btn {
+                display: none;
+            }
+            
+            .resume-preview {
+                position: static;
+                max-height: none;
+                box-shadow: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .resume-builder {
+                grid-template-columns: 1fr;
+            }
+            
+            .resume-preview {
+                position: static;
+                max-height: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💼 Online Job Portal</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="job.html">Jobs</a>
+        <a href="employer.html">For Employers</a>
+        <a href="seeker.html">For Job Seekers</a>
+        <a href="resume.html">Resume Builder</a>
+    </nav>
+    
+    <div class="container">
+        <h2 style="color: #FF9500; margin-bottom: 2rem; font-size: 2rem;">📄 Easy Resume Builder</h2>
+        
+        <div class="resume-builder">
+            <!-- Form Section -->
+            <div>
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h2>Personal Information</h2>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="fullName" placeholder="John Doe" oninput="updateResume()">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" placeholder="john@example.com" oninput="updateResume()">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" id="phone" placeholder="9876543210" oninput="updateResume()">
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="location" placeholder="Bangalore, India" oninput="updateResume()">
+                    </div>
+                    <div class="form-group">
+                        <label>Professional Summary</label>
+                        <textarea id="summary" placeholder="Brief overview of your professional background..." oninput="updateResume()"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Education -->
+                <div class="form-section">
+                    <h2>Education</h2>
+                    <div id="education-fields">
+                        <div class="section-item">
+                            <input type="text" placeholder="School/University" class="edu-school" oninput="updateResume()">
+                            <input type="text" placeholder="Degree (e.g., B.Tech)" class="edu-degree" oninput="updateResume()">
+                            <input type="text" placeholder="Field of Study" class="edu-field" oninput="updateResume()">
+                            <input type="text" placeholder="Year of Graduation (e.g., 2022)" class="edu-year" oninput="updateResume()">
+                        </div>
+                    </div>
+                    <button class="add-more-btn" onclick="addEducation()">+ Add Education</button>
+                </div>
+                
+                <!-- Experience -->
+                <div class="form-section">
+                    <h2>Work Experience</h2>
+                    <div id="experience-fields">
+                        <div class="section-item">
+                            <input type="text" placeholder="Job Title" class="exp-title" oninput="updateResume()">
+                            <input type="text" placeholder="Company Name" class="exp-company" oninput="updateResume()">
+                            <input type="text" placeholder="Duration (e.g., Jan 2020 - Dec 2022)" class="exp-duration" oninput="updateResume()">
+                            <textarea placeholder="Job Description" class="exp-desc" oninput="updateResume()"></textarea>
+                        </div>
+                    </div>
+                    <button class="add-more-btn" onclick="addExperience()">+ Add Experience</button>
+                </div>
+                
+                <!-- Skills -->
+                <div class="form-section">
+                    <h2>Skills</h2>
+                    <div id="skills-fields">
+                        <div class="section-item">
+                            <input type="text" placeholder="Skill (e.g., React, JavaScript)" class="skill-item" oninput="updateResume()">
+                        </div>
+                    </div>
+                    <button class="add-more-btn" onclick="addSkill()">+ Add Skill</button>
+                </div>
+                
+                <!-- Certifications -->
+                <div class="form-section">
+                    <h2>Certifications</h2>
+                    <div id="cert-fields">
+                        <div class="section-item">
+                            <input type="text" placeholder="Certification Name" class="cert-name" oninput="updateResume()">
+                            <input type="text" placeholder="Issuing Organization" class="cert-org" oninput="updateResume()">
+                        </div>
+                    </div>
+                    <button class="add-more-btn" onclick="addCertification()">+ Add Certification</button>
+                </div>
+            </div>
+            
+            <!-- Resume Preview -->
+            <div class="resume-preview" id="resumePreview">
+                <button class="download-btn" onclick="downloadResume()">📥 Download as PDF</button>
+                <button class="print-btn" onclick="window.print()">🖨️ Print Resume</button>
+                
+                <div class="resume-header">
+                    <div class="resume-name" id="previewName">Your Name</div>
+                    <div class="resume-contact" id="previewContact"></div>
+                </div>
+                
+                <div class="resume-section" id="summarySection" style="display: none;">
+                    <div class="resume-section-title">PROFESSIONAL SUMMARY</div>
+                    <div id="previewSummary"></div>
+                </div>
+                
+                <div class="resume-section" id="experienceSection" style="display: none;">
+                    <div class="resume-section-title">WORK EXPERIENCE</div>
+                    <div id="previewExperience"></div>
+                </div>
+                
+                <div class="resume-section" id="educationSection" style="display: none;">
+                    <div class="resume-section-title">EDUCATION</div>
+                    <div id="previewEducation"></div>
+                </div>
+                
+                <div class="resume-section" id="skillsSection" style="display: none;">
+                    <div class="resume-section-title">SKILLS</div>
+                    <div id="previewSkills"></div>
+                </div>
+                
+                <div class="resume-section" id="certSection" style="display: none;">
+                    <div class="resume-section-title">CERTIFICATIONS</div>
+                    <div id="previewCert"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Online Job Portal. All rights reserved.</p>
+        <p style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #ddd;"><strong>Built by MD SAHBAZ HUSSAIN</strong></p>
+        <p style="margin-top: 0.5rem;">📞 Contact: 9064779790</p>
+    </footer>
+    
+    <script>
+        // Add functions for managing form fields
+        function addEducation() {
+            const container = document.getElementById('education-fields');
+            const newItem = document.createElement('div');
+            newItem.className = 'section-item';
+            newItem.innerHTML = `
+                <input type="text" placeholder="School/University" class="edu-school" oninput="updateResume()">
+                <input type="text" placeholder="Degree (e.g., B.Tech)" class="edu-degree" oninput="updateResume()">
+                <input type="text" placeholder="Field of Study" class="edu-field" oninput="updateResume()">
+                <input type="text" placeholder="Year of Graduation" class="edu-year" oninput="updateResume()">
+                <button class="remove-btn" onclick="this.parentElement.remove(); updateResume();">Remove</button>
+            `;
+            container.appendChild(newItem);
+        }
+        
+        function addExperience() {
+            const container = document.getElementById('experience-fields');
+            const newItem = document.createElement('div');
+            newItem.className = 'section-item';
+            newItem.innerHTML = `
+                <input type="text" placeholder="Job Title" class="exp-title" oninput="updateResume()">
+                <input type="text" placeholder="Company Name" class="exp-company" oninput="updateResume()">
+                <input type="text" placeholder="Duration (e.g., Jan 2020 - Dec 2022)" class="exp-duration" oninput="updateResume()">
+                <textarea placeholder="Job Description" class="exp-desc" oninput="updateResume()"></textarea>
+                <button class="remove-btn" onclick="this.parentElement.remove(); updateResume();">Remove</button>
+            `;
+            container.appendChild(newItem);
+        }
+        
+        function addSkill() {
+            const container = document.getElementById('skills-fields');
+            const newItem = document.createElement('div');
+            newItem.className = 'section-item';
+            newItem.innerHTML = `
+                <input type="text" placeholder="Skill (e.g., React, JavaScript)" class="skill-item" oninput="updateResume()">
+                <button class="remove-btn" onclick="this.parentElement.remove(); updateResume();">Remove</button>
+            `;
+            container.appendChild(newItem);
+        }
+        
+        function addCertification() {
+            const container = document.getElementById('cert-fields');
+            const newItem = document.createElement('div');
+            newItem.className = 'section-item';
+            newItem.innerHTML = `
+                <input type="text" placeholder="Certification Name" class="cert-name" oninput="updateResume()">
+                <input type="text" placeholder="Issuing Organization" class="cert-org" oninput="updateResume()">
+                <button class="remove-btn" onclick="this.parentElement.remove(); updateResume();">Remove</button>
+            `;
+            container.appendChild(newItem);
+        }
+        
+        // Update resume preview in real-time
+        function updateResume() {
+            const fullName = document.getElementById('fullName').value || 'Your Name';
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const location = document.getElementById('location').value;
+            const summary = document.getElementById('summary').value;
+            
+            // Update header
+            document.getElementById('previewName').textContent = fullName;
+            document.getElementById('previewContact').textContent = 
+                [email, phone, location].filter(x => x).join(' | ');
+            
+            // Update summary
+            const summarySection = document.getElementById('summarySection');
+            if (summary) {
+                summarySection.style.display = 'block';
+                document.getElementById('previewSummary').textContent = summary;
+            } else {
+                summarySection.style.display = 'none';
+            }
+            
+            // Update experience
+            const expItems = document.querySelectorAll('#experience-fields .section-item');
+            if (expItems.length > 0 && expItems[0].querySelector('.exp-title').value) {
+                document.getElementById('experienceSection').style.display = 'block';
+                let expHtml = '';
+                expItems.forEach(item => {
+                    const title = item.querySelector('.exp-title').value;
+                    const company = item.querySelector('.exp-company').value;
+                    const duration = item.querySelector('.exp-duration').value;
+                    const desc = item.querySelector('.exp-desc').value;
+                    if (title || company) {
+                        expHtml += `
+                            <div class="resume-item">
+                                <div class="resume-item-title">${title}</div>
+                                <div class="resume-item-subtitle">${company} | ${duration}</div>
+                                <div class="resume-item-desc">${desc}</div>
+                            </div>
+                        `;
+                    }
+                });
+                document.getElementById('previewExperience').innerHTML = expHtml;
+            } else {
+                document.getElementById('experienceSection').style.display = 'none';
+            }
+            
+            // Update education
+            const eduItems = document.querySelectorAll('#education-fields .section-item');
+            if (eduItems.length > 0 && eduItems[0].querySelector('.edu-school').value) {
+                document.getElementById('educationSection').style.display = 'block';
+                let eduHtml = '';
+                eduItems.forEach(item => {
+                    const school = item.querySelector('.edu-school').value;
+                    const degree = item.querySelector('.edu-degree').value;
+                    const field = item.querySelector('.edu-field').value;
+                    const year = item.querySelector('.edu-year').value;
+                    if (school) {
+                        eduHtml += `
+                            <div class="resume-item">
+                                <div class="resume-item-title">${degree} in ${field}</div>
+                                <div class="resume-item-subtitle">${school} | ${year}</div>
+                            </div>
+                        `;
+                    }
+                });
+                document.getElementById('previewEducation').innerHTML = eduHtml;
+            } else {
+                document.getElementById('educationSection').style.display = 'none';
+            }
+            
+            // Update skills
+            const skillItems = document.querySelectorAll('#skills-fields .skill-item');
+            if (skillItems.length > 0 && skillItems[0].value) {
+                document.getElementById('skillsSection').style.display = 'block';
+                let skills = [];
+                skillItems.forEach(item => {
+                    if (item.value) skills.push(item.value);
+                });
+                document.getElementById('previewSkills').textContent = skills.join(' • ');
+            } else {
+                document.getElementById('skillsSection').style.display = 'none';
+            }
+            
+            // Update certifications
+            const certItems = document.querySelectorAll('#cert-fields .section-item');
+            if (certItems.length > 0 && certItems[0].querySelector('.cert-name').value) {
+                document.getElementById('certSection').style.display = 'block';
+                let certHtml = '';
+                certItems.forEach(item => {
+                    const name = item.querySelector('.cert-name').value;
+                    const org = item.querySelector('.cert-org').value;
+                    if (name) {
+                        certHtml += `
+                            <div class="resume-item">
+                                <div class="resume-item-title">${name}</div>
+                                <div class="resume-item-subtitle">${org}</div>
+                            </div>
+                        `;
+                    }
+                });
+                document.getElementById('previewCert').innerHTML = certHtml;
+            } else {
+                document.getElementById('certSection').style.display = 'none';
+            }
+        }
+        
+        // Download resume as PDF
+        function downloadResume() {
+            const fullName = document.getElementById('fullName').value || 'Resume';
+            alert('✅ Resume downloaded as ' + fullName + '.pdf\n\nNote: Click Print button and select "Save as PDF" for PDF download.');
+        }
+        
+        // Load on page load
+        window.onload = function() {
+            updateResume();
+        };
+    </script>
+</body>
+</html>
